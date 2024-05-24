@@ -22,7 +22,6 @@ function App() {
     [8, 8],
   ];
 
-  // Clean up existing entities if present.
   const cleanExistingEntities = async (_entityType) => {
     for (let i = 0; i < NUM_ROWS; i++) {
       for (let j = 0; j < NUM_COLS; j++) {
@@ -33,8 +32,9 @@ function App() {
               row: i.toString(),
               column: j.toString(),
             },
+            retry: 3,
+            retryDelay: 4000,
           });
-          console.log(response);
         } catch (e) {
           console.error(e);
         }
@@ -44,7 +44,7 @@ function App() {
 
   useEffect(() => {
     //Clean up existing polyanet, comeths and soloons if present.
-    cleanExistingEntities("polyanet");
+    cleanExistingEntities("polyanets");
     cleanExistingEntities("soloons");
     cleanExistingEntities("comeths");
 
